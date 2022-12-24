@@ -1,0 +1,32 @@
+.formDiv{
+    margin: 0 auto;
+    margin-bottom: 0%;
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    margin-top: 50px;
+}
+.H1{
+    /* margin-top: 30px; */
+    text-align: center;
+    color: white;
+    /* font: poppins; */
+    font-family: 'Poppins', sans-serif;
+    font-size: 100px;
+    padding-top: 40px;
+    margin-bottom: 0px;
+    position: relative;
+    /* background: linear-gradient(to top left, #a756b8, #550065); */
+
+}
+.pageContainer{
+    background: linear-gradient(to top left, #a756b8, #550065);
+    height:100vh;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
