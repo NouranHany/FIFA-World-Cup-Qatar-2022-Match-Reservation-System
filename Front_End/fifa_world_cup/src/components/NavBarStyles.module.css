@@ -8,7 +8,7 @@
  }
  .navContainer{
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -22,6 +22,8 @@
     right: 0;
     left: 0;
     z-index: 3;
+    padding-left: 70px;
+      padding-right: 70px;
  }
  
  .listItem{
@@ -29,6 +31,10 @@
     margin-left: 30px;
     color: white;
     margin-top: 10px;
+ }
+ .listItem:hover{
+   transform: scale(1.1);
+    transition: 0.4s;
  }
  .logo{
     height: 60px;

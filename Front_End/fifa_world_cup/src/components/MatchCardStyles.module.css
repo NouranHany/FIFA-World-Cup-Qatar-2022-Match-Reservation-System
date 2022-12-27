@@ -1,0 +1,13 @@
+.card_container:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+
+.cardRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+}
