@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -70,5 +71,15 @@ class AuthController extends Controller
         return response([
             "message" => "you logged out successfully!"
         ]);
+    }
+
+    public function getProfile(Request $request)
+    {
+        try {
+            $user = auth()->guard('api')->user();
+            return response()->json(['status'=>'true','message'=>"user profile",'data'=>$user]);
+        } catch (\Throwable $th) {
+            return response()->json(['status'=>'false','message'=>"errrorrrrrrrrr"],500);
+        }
     }
 }
