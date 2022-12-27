@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MatcheController;
 use App\Http\Controllers\StadiumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,10 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
-Route::post('addStadium', [StadiumController::class, 'store']);
 
+Route::post('/stadium/add', [StadiumController::class, 'store']);
+
+
+##############################  Match Routes ################### 
+Route::post('/match', [MatcheController::class, 'store']);
+Route::put('/match/{match_id}', [MatcheController::class, 'update']);

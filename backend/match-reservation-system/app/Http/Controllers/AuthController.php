@@ -73,13 +73,4 @@ class AuthController extends Controller
         ]);
     }
 
-    public function getProfile(Request $request)
-    {
-        try {
-            $user = auth()->guard('api')->user();
-            return response()->json(['status'=>'true','message'=>"user profile",'data'=>$user]);
-        } catch (\Throwable $th) {
-            return response()->json(['status'=>'false','message'=>"errrorrrrrrrrr"],500);
-        }
-    }
 }
