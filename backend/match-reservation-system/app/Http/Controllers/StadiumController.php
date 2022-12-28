@@ -18,6 +18,7 @@ class StadiumController extends Controller
             } 
 
             $validated = $request->validate([
+                'name'=>['required'],
                 'rows_count' => ['required'],
                 'cols_count' => ['required'],
                 'location'=>['required'],

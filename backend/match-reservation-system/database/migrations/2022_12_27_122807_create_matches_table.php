@@ -21,23 +21,23 @@ return new class extends Migration
             $table->string('linesman1_name');
             $table->string('linesman2_name');
 
-            $table->unsignedBigInteger('stadium_id');
-            $table->foreign('stadium_id')
-                ->references('id')
+            $table->string('stadium_name');
+            $table->foreign('stadium_name')
+                ->references('name')
                 ->on('stadia')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             
-            $table->unsignedBigInteger('team1_id');
-            $table->foreign('team1_id')
-                ->references('id')
+            $table->string('team1_name');
+            $table->foreign('team1_name')
+                ->references('name')
                 ->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             
-            $table->unsignedBigInteger('team2_id');
-            $table->foreign('team2_id')
-                ->references('id')
+            $table->string('team2_name');
+            $table->foreign('team2_name')
+                ->references('name')
                 ->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

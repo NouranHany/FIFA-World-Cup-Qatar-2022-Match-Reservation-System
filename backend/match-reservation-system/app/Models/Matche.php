@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matche extends Model
 {
+
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
@@ -15,9 +16,9 @@ class Matche extends Model
         'referee_name',
         'linesman1_name',
         'linesman2_name',
-        'stadium_id',
-        'team1_id',
-        'team2_id',
+        'stadium_name',
+        'team1_name',
+        'team2_name',
     ];
 
 }

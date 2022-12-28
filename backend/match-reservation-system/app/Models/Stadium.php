@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Stadium extends Model
 {
     use HasFactory;
+    protected $primaryKey = ['name'];
+    public $incrementing = false;
 
     protected $fillable = [
-        'id',
+        'name',
         'rows_count',
         'cols_count',
         'location'

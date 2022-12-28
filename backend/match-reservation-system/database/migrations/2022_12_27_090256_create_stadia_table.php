@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stadia', function (Blueprint $table) {
-            $table->id();
             $table->timestamps();
+            $table->string("name")->unique();
             $table->integer('rows_count');
             $table->integer('cols_count');
             $table->string('location');

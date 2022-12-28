@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
         
             $table->dateTime('creation_time');
-            $table->integer('seat_number');
+            $table->string('seat_number');
 
             $table->unsignedBigInteger('matche_id');
             $table->foreign('matche_id')

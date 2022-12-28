@@ -18,8 +18,8 @@ class TeamFactory extends Factory
     {
         
         return [
-            'name'=>$this->faker->name(),
-            'id'=>$this->faker->unique()->numberBetween(1,32)
+            'name'=>$this->faker->unique()->country(),
+
         ];
     }
 }
