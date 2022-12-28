@@ -53,7 +53,7 @@ class AuthController extends Controller
         
 
         $validated['requesting_promotion']= $validated['role'] == 0? false:true;
-        $validated['role']=0;
+//         $validated['role']=0;
         
         $validated['password'] = Hash::make($request->password);
         
