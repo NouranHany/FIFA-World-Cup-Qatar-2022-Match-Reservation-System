@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MatcheController;
 use App\Http\Controllers\StadiumController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -28,12 +29,19 @@ Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 ############################## Stadium Routes ################### 
-Route::post('/stadium', [StadiumController::class, 'store'])->middleware('auth:api');;
+Route::post('stadium', [StadiumController::class, 'store'])->middleware('auth:api');
+Route::get('stadium', [StadiumController::class, 'index'])->middleware('auth:api');
+
+############################## Team Routes ################### 
+Route::get('team', [TeamController::class, 'index'])->middleware('auth:api');
 
 
 ############################## Match Routes ################### 
-Route::post('/match', [MatcheController::class, 'store'])->middleware('auth:api');;
-Route::put('/match/{match_id}', [MatcheController::class, 'update'])->middleware('auth:api');;
+Route::post('match', [MatcheController::class, 'store'])->middleware('auth:api');
+Route::put('match/{match_id}', [MatcheController::class, 'update'])->middleware('auth:api');
+Route::get('match', [MatcheController::class, 'index']);
+Route::get('match/{match_id}', [MatcheController::class, 'show']);
+
 
 ############################## User Routes ####################
 Route::get('user/{username}', [UserController::class, 'show']);

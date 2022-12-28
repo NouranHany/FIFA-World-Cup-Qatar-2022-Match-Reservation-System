@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matche;
+use App\Models\Reservation;
+use App\Models\Stadium;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
@@ -188,5 +190,79 @@ class MatcheController extends Controller
         ], Response::HTTP_OK);
          
 
+    }
+
+    public function index(Request $request)
+    {
+        
+       
+        $today=Carbon::now();
+        $str_date=$today->year.'/'.$today->month.'/'.$today->day;
+        $str_time = $today->hour . ':' . $today->minute . ':' . $today->second;
+
+        $date = date('Y-m-d',strtotime($str_date));
+        $time = date('H:i:s',strtotime($str_time));
+
+        $matches = Matche::where([
+            ['date', '=', $date],
+            ['start_time', '>', $time],
+        ])->orWhere([
+                ['date', '>', $date],
+            ])->orderBy('date','asc')->get();
+
+        return response([
+            "matches"=>$matches
+            ], Response::HTTP_OK);
+
+    }
+
+
+    public function show($match_id,Request $request)
+    {
+        $user = auth()->guard('api')->user();
+
+        $matche = Matche::where([
+            ['id', '=',$match_id ],
+        ])->first();
+
+        if (empty($matche)){
+            return response([
+                'message' => 'You are trying to view a non existing match'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $stadium = Stadium::where([
+            ['name', '=',$matche->stadium_name],
+        ])->first();
+
+      
+        $reserved_seats = Reservation::where([['matche_id','=',$match_id]])->orderBy('seat_number', 'asc')->pluck('seat_number')->toArray();
+        $shape = array();
+        foreach(range(1,$stadium->rows_count) as $row){
+
+            $row_seats = array();
+            foreach(range(1,$stadium->cols_count) as $col){
+                $status = false;
+                $seat=$row.'-'.$col;
+                if(in_array($seat, $reserved_seats)){
+                    $status = true;
+                    $username = null;
+                    if(!is_null($user) && $user->role == 1) {
+                        $username=Reservation::where([['matche_id','=',$match_id],['seat_number','=',$seat]])->first()->username;
+                    }
+                }
+            array_push($row_seats,['id'=>$seat,'selected'=>$status,'username'=>$username]);
+            }
+            array_push($shape,$row_seats);
+        }
+
+
+        $matche->stadium = $stadium;
+        $stadium->shape = $shape;
+        return response([
+            "match"=>$matche,
+            ], Response::HTTP_OK);
+       
+     
     }
 }
