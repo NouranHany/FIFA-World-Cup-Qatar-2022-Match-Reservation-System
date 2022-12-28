@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -34,7 +36,7 @@ class UserController extends Controller
         ]);
 
         return response([
-            'message' => ['approved_user' => $requesting_user]
+            'approved_user' => $requesting_user
         ], Response::HTTP_OK);
     }
 
@@ -64,7 +66,7 @@ class UserController extends Controller
         }
     
         return response([
-            'message' => ['approved_users' => $requesting_users]
+            'approved_users' => $requesting_users
         ], Response::HTTP_OK);
     }
 
@@ -86,7 +88,7 @@ class UserController extends Controller
             ])->get();
 
         return response([
-            'message' => ["unapproved_users" => $requesting_users]
+            "unapproved_users" => $requesting_users
         ], Response::HTTP_OK);
     }
 
@@ -116,4 +118,73 @@ class UserController extends Controller
         ], Response::HTTP_OK);
 
     }
+
+    public function show($username, Request $request)
+    {
+        //Validate the existence of the user
+        $user = User::where('username', $username)->first();
+        if (empty($user)) {
+            return response([
+                'message' => "User doesn't exist."
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        # return the user retrieved
+        return response([
+            "user" => $user
+        ], Response::HTTP_OK);
+
+    }
+
+    public function update($username, Request $request)
+    {
+        // Validate the existence of the user
+        $user_requested = User::where('username', $username)->first();
+        if (empty($user_requested)) {
+            return response([
+                'message' => "User doesn't exist."
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $user_loggedin = auth()->guard('api')->user();
+        // Validate the authorization to edit a user
+        if ($user_requested->username != $user_loggedin->username){
+            return response([
+                'message' => 'Only profile owner can edit his or her profile.'
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        if ($request->has("old_password")){
+            if ($request->has("new_password")){
+                // check the correctness of the old credentails
+                if (!Hash::check($request->old_password, $user_loggedin->password)){
+                    return response([
+                        'message' => 'The old password entered is incorrect.'
+                    ], Response::HTTP_UNAUTHORIZED);
+                }
+                $password = Hash::make($request->new_password);
+            }
+        }
+        else{
+            $password = $user_loggedin->password;
+        }
+        
+
+        // update the user
+        $user_loggedin->update([
+            'password' => $password,
+            'first_name' => $request->first_name ?? $user_loggedin->first_name,
+            'last_name' => $request->last_name ?? $user_loggedin->last_name,
+            'birth_date' => $request->birth_date ?? $user_loggedin->birth_date,
+            'gender' => $request->gender ?? $user_loggedin->gender,
+            'nationality' => $request->nationality ?? $user_loggedin->nationality,
+            'requesting_promotion' => ($request->has('role') && $request->role == 1 && $user_loggedin->role==0) ? true:$user_loggedin->requesting_promotion
+        ]);
+
+        # retrieve the updated user
+        return response([
+            "user" => $user_loggedin
+        ], Response::HTTP_OK);
+    }
+    
 }

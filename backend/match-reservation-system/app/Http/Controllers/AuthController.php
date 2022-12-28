@@ -9,6 +9,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
         // respond with the user and its token
         return response([
             'user' => auth()->user(),
-            'access_token' => auth()->user()->createToken('authToken')->accessToken
+            'token' => auth()->user()->createToken('authToken')->accessToken
         ], Response::HTTP_OK);
         
     }
@@ -47,8 +48,12 @@ class AuthController extends Controller
             'last_name' => ['required'],
             'birth_date' => ['required'],
             'gender' => ['required'],
-            'role' => ['required', Rule::in([0, 1, 2])] // should be only 0?
+            'role' => ['required', Rule::in([0, 1, 2])]
         ]);
+        
+
+        $validated['requesting_promotion']= $validated['role'] == 0? false:true;
+        $validated['role']=0;
         
         $validated['password'] = Hash::make($request->password);
         

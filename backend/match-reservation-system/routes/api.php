@@ -36,10 +36,11 @@ Route::post('/match', [MatcheController::class, 'store'])->middleware('auth:api'
 Route::put('/match/{match_id}', [MatcheController::class, 'update'])->middleware('auth:api');;
 
 ############################## User Routes ####################
-// Route::get('user/{username}', [UserController::class, 'show']);
+Route::get('user/{username}', [UserController::class, 'show']);
+Route::put('user/{username}', [UserController::class, 'update'])->middleware('auth:api');
 Route::delete('user/{username}', [UserController::class, 'delete'])->middleware('auth:api');
 Route::post('user/approve/{username}', [UserController::class, 'approve'])->middleware('auth:api');
 Route::post('user/approve', [UserController::class, 'approve_all'])->middleware('auth:api');
-Route::get('user/unapproved-users', [UserController::class, 'unapproved_users'])->middleware('auth:api');
+Route::get('/unapproved_users', [UserController::class, 'unapproved_users'])->middleware('auth:api');
 
 
