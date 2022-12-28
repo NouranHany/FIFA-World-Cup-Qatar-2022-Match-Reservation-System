@@ -17,8 +17,9 @@ class StadiumController extends Controller
                 ], Response::HTTP_FORBIDDEN);
             } 
 
+
             $validated = $request->validate([
-                'name'=>['required'],
+                'name'=>['required',"unique:stadia,name"],
                 'rows_count' => ['required'],
                 'cols_count' => ['required'],
                 'location'=>['required'],
@@ -27,7 +28,7 @@ class StadiumController extends Controller
             $stadium= Stadium::create($validated);
 
             return response([
-                $stadium
+                "stadium"=> $stadium
             ], Response::HTTP_OK);
     }
 

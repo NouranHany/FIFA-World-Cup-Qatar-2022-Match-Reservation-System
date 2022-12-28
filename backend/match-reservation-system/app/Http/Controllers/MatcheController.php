@@ -72,7 +72,8 @@ class MatcheController extends Controller
         $same_stadium = Matche::where([
             ['stadium_name', '=', $request->stadium_name],
             ['start_time', '<', $startTime],
-            ['start_time', '>', $endTime]
+            ['start_time', '>', $endTime],
+            ['date', '=', $date]
         ])->first();
 
         if (!empty($same_stadium)) {
@@ -85,7 +86,7 @@ class MatcheController extends Controller
         $matche = Matche::create($validated);
 
         return response([
-          $matche
+          "match"=>$matche
         ], Response::HTTP_OK);
 
     }
@@ -159,6 +160,7 @@ class MatcheController extends Controller
             ['stadium_name', '=', $request->stadium_name],
             ['start_time', '<', $startTime],
             ['start_time', '>', $endTime],
+            ['date', '=', $date],
             ['id', '!=', $matche_id]
         ])->first();
 
@@ -182,7 +184,7 @@ class MatcheController extends Controller
         ]);
 
         return response([
-           $matche
+           "match"=>$matche
         ], Response::HTTP_OK);
          
 
