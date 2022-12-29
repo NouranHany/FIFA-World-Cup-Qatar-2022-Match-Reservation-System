@@ -40,6 +40,12 @@ class MatcheController extends Controller
             'team2_name' => ['required']
         ]);
 
+        if ($request->team2_name ==$request->team1_name){
+            return response([
+                'message' => 'A match needed to be played by 2 different teams'
+            ], Response::HTTP_CONFLICT);
+        }
+
         $team1_name = $request->team1_name;
         $team2_name = $request->team2_name;
         $date = $request->date;
@@ -80,7 +86,7 @@ class MatcheController extends Controller
 
         if (!empty($same_stadium)) {
             return response([
-                'message' => 'A staium cannot be used for 2 matches at same time'
+                'message' => 'A stadium cannot be used for 2 matches at same time'
             ], Response::HTTP_CONFLICT);
         }
     
@@ -152,7 +158,12 @@ class MatcheController extends Controller
                 'message' => 'A team cannot play 2 matches on the same day'
             ], Response::HTTP_CONFLICT);
         }
-
+        
+        if ($team1_name ==$team2_name){
+            return response([
+                'message' => 'A match needed to be played by 2 different teams'
+            ], Response::HTTP_CONFLICT);
+        }
 
         // two matches cannot be played at the same time on the same stadium
         $startTime = Carbon::parse($start_time)->addMinutes(90)->toTimeString();
@@ -244,9 +255,9 @@ class MatcheController extends Controller
             foreach(range(1,$stadium->cols_count) as $col){
                 $status = false;
                 $seat=$row.'-'.$col;
+                $username = null;
                 if(in_array($seat, $reserved_seats)){
                     $status = true;
-                    $username = null;
                     if(!is_null($user) && $user->role == 1) {
                         $username=Reservation::where([['matche_id','=',$match_id],['seat_number','=',$seat]])->first()->username;
                     }
