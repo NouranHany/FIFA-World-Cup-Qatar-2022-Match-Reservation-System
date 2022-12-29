@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "2026b04a-ff67-4c94-a6d4-d38880dedd9c",
+		"_postman_id": "68c45477-27c1-49a1-91c6-a3855b295ec5",
 		"name": "Match-Reservation-System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25065665"
+		"_exporter_id": "14045917"
 	},
 	"item": [
 		{
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email_address\":\"hala1@gmail.com\",\r\n    \"password\":\"test123\"\r\n}"
+							"raw": "{\r\n    \"email_address\":\"hany.noranmm@gmail.com\",\r\n    \"password\":\"123456\"\r\n}"
 						},
 						"url": {
 							"raw": "{{host}}/login",
@@ -238,13 +238,16 @@
 				},
 				{
 					"name": "unapproved users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiOGQ4M2FhYmFjMjc0NjQwN2VjMGJmOGE1YWEwYjNkY2IyOTJkZjQ2MTE0ZjRmODQ0ZWMxNDczOGUxMWQ4YTg3ZmFkOWExYWE4ZjdkYjJjN2IiLCJpYXQiOjE2NzIxNjE5NzQuMDM4NjA4LCJuYmYiOjE2NzIxNjE5NzQuMDM4NjEsImV4cCI6MTcwMzY5Nzk3NC4wMzU3NzEsInN1YiI6IjUiLCJzY29wZXMiOltdfQ.rTnsudjeBCxWRgt6LcMrUg-hNJEJ3pohTPdnPRe8lbFtEY9AZl-Y6nLnZPw2V_uzswLey-HNU2xRb__vZ6Lofe-B5PbZ03nyERWwCDA1ikV7WGDPPSAcE0tryLeRjJ4Qk5SZ2o86-M_rpMf5duqkFZLaYZKcCUQWW03vRSgtjHGU2VbQ-NKf2rNSYweuPMmgGzfQ4g6SJvV54NTnR48Es-TQKwAoczu5EZpxqobKRgwFKILKJM_t_aov3NQrBYYQ-JcuxqzZkcWcLS-WX-pFOn-Wm7z2gbaS0bHZivVjvx6EjjhtfTaQ0VksUIe3WENudkE2okD4odflIElXVoYEK-OWOyqddqRf02UvCZtOxwazqJUfq9saoLz9yaaG0tCTq4U3r1oy_7BCtB_RnykRi1IrHGwcbarAw-MJg5lL8JJbRC6OJSYxBGFwatfVq1lteY_4ADTu4hMrfXE3dB6aPst0_WlNoLO2fA05AZAstTFZWkLRIsU0gOBlkQogcyV8PqQPFvtLWxp2lI5X4NB7DezcfSByKJih1AgTxmjEHc0Z6aXpL4MlowdhGPPKRZthutbhNMz2WrUuPWZUHBTSVaKBE3f2k5Lwjmp-vtWRDFHb-91zKKkUH-0Rb1J7VixbLcUyfx_FpBM8a18lL8PE9TaqgiiYgi6gXoOyehu96yU",
+									"value": "{{admin_token}}",
 									"type": "string"
 								}
 							]
@@ -262,14 +265,17 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{host}}/user/unapproved-users",
+							"raw": "{{host}}/unapproved_users",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"user",
-								"unapproved-users"
+								"unapproved_users"
 							]
 						}
 					},
@@ -301,6 +307,95 @@
 								"type": "text"
 							}
 						],
+						"url": {
+							"raw": "{{host}}/user/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/user/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"farah\",\r\n    \"old_password\": \"test123\",\r\n    \"new_password\": \"123456\"\r\n}"
+						},
 						"url": {
 							"raw": "{{host}}/user/1",
 							"host": [
@@ -626,6 +721,133 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Get all reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/reservation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel a reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matche_id\": 3,\r\n    \"seat_number\":\"4-9\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/reservation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matche_id\": 3,\r\n    \"seat_number\":\"4-9\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/reservation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -657,6 +879,21 @@
 		{
 			"key": "token",
 			"value": "FzKhVooL0JdmsFFKUszN3Jpl1IlH6wMVJCPsMfuE",
+			"type": "string"
+		},
+		{
+			"key": "user_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzUyMDI3M2FmNjY0NDIyNTA2NmYwZDZiZWY2MTJhM2M4NDQzODkwZmMxMzhiZWVkNzM2M2M3ODBiZjQ4NmQwMTJiODc0NDQwNmRjN2MyODciLCJpYXQiOjE2NzIyNTQzNjguNDI0NzA5LCJuYmYiOjE2NzIyNTQzNjguNDI0NzEsImV4cCI6MTcwMzc5MDM2OC40MjE0NTUsInN1YiI6IjMiLCJzY29wZXMiOltdfQ.tWWjrILsyuy47LIGDuXaYLiIpyPY_63plZmmJr7-07O0FTXp3XifeCAsJ3WOrvHLAwBh4xBhHyCNiNsrWTP9esbM-7mGpiNSVitXZKbFj_oWlXKdGNKQVf1f-eE_LKCqjGrIL1wcJCEZNTlxNEkhVAQ_iusGtvD6RYiFSQPsCrz3EeesNRVe3ldVu0068HMQDreoIGe7cvv0plG8eu9WkxzLClpTX6EGoHIikZgmFl6o0feTGPOEIZfyCuNmzqyv1nHWJkosRTC_zNyjy8Ak0Hx0IwAQyvj80boHA7KemYDkFSufLINJ15EWOowUFgp7oKK83RpbGBjfgCVdkhqvowoHY6KWGzS2swKNZCog3odSi1sMiE-B3vF75K9drA__DmPow_IKGcqtdNm65GV3hRR4Z7bBbM1BW5dtFclpy6ht3Su2vYbfG114lpVYg4VvwwXsOTeW2cn9FRxBk-ouHncUDA2sSqa9J4WeeNu8nqNpUBMPq4XwT209p-nIyPiBilXRJjTSl7tqNDerOpD4MrcXdRbvU4PJ6pJJnX6pRGUbICvXJNUPalvdw3L2jXwkVpCJ7jspXBiWurn_T8kX7hBeaUMcvc1K2NWJqQoZ-aYkNvmsxG34Ve6KdQ0M4ExB-FxTzAbEl3F7kjA_pU0UYUNA_Wvj4RvBVXffkf2LiBw",
+			"type": "string"
+		},
+		{
+			"key": "manager_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGU2ZTE1MTQ4YzA3NzM2OTI2YTEzOGZkY2U5N2UwYzkzNzIyMTI3NmE0MjM2ZmE4NWI0MWVjNmIzOTEzNzRjNDgxNWEwY2VlY2E0NWRjMzMiLCJpYXQiOjE2NzIyNTQxMTguOTQyNTI1LCJuYmYiOjE2NzIyNTQxMTguOTQyNTI3LCJleHAiOjE3MDM3OTAxMTguOTM4NzE4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.W8tdm5M3H_tK90CmvMgdstXwyD6Tw09AvLmxXmvdhTngdSMIbNr-K8XRXCz5UV_Pobroo0lluGtPQ1rqiJkZPUc05vxRvUkQej7xVb2D_1cOHoZ7e6U-O75h8VrY3p8T_37ThBeO9wH58BX9J96VWk6ZEtFJAG60kZ-XJuPSRM0-IQMT1exmAJPw3mJjTx9A7mOyP7_m_2S27z1rxS2kPCfqMNGbcnG6rX5imH9kx2EZITDQ8GbaDMtMe-WN74YrXjuqFkxGcCtyh7tWVytac5D5BX7AMNrjRYMKeJx-hc-ga93eXSXz9PUR70WHGyAtpeMr6lGURsmWr0ueo9E_kjJVSnE1mRJijv8i6jZ-UCF7hLkgcwGM9_fr8P6urSErTZc-wwi0JVIon5B1ydAonj-xKORHRxfR-4vw2tMy6QTVGX-t2qim1Pa86D-O6MUgm8VjErS3a_4dsHqnYwhSLXrma-jMID55hp-asX3afXz6uXZsRNQrJKDu-7dpx23T6ecISAkb35OHuoS9GHi1vzkRmbtwK1OexUS25sHI3m9Jhm7EiN6DKVXLLS7UdxJuNjGyqHfhM6M8RlZAn9NdNcmSlA7I_1ydXvbwQtL416YXvGs0nXu7g-6bYmbPTao38CWp5wJq56nX-pmhVMhkvv1oRkx1hAlVMqrg1xamCLs",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTFkOTYyYjMzNTY3Y2Q1OWUzNzA1MWQ2MzhhMGYyYTRhMjgzYWUzYzA3ZmI2ZTkyODRlODkyNGE5MWUzYmYxZTVkN2ZiMTVjMmQwNzA5Y2EiLCJpYXQiOjE2NzIyNTQxNjAuMjc0NDkxLCJuYmYiOjE2NzIyNTQxNjAuMjc0NDk0LCJleHAiOjE3MDM3OTAxNjAuMjcxNDU2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.czzHaaR3fLiTHEBpGJLrLvIgIDbnOLUHL-2vWx5rxMef_EUjgXzlrfRgBqLdqC8k4mCLGzsybCbn0Vv6OssKVD6G3U49gMAVLyUBDRUHzQ1kF1PjDFZuPRf0jYu5HY1DuSOv5mU03pe_Uuu8KRJzUr6MxnuAV7rfo4YTAZLFt6YmJpoYRh2dhC4HMHbm094dMfOjDlij2psIDJSKRfxRylrc1tj-N-1jN3kj7i13ga76JSiC_JVsNBeG5E-GsuMWrl3zJ8ZB4pXIEXtaL9YanavpfFije0kyiqHs1Spkdoco6Mko9tG3ZDKM6w9sI3bhc19uMXsG5JiZoVRwf36aqhmGH2haukujhMI6_ZCQh-Vvob8ii8XUC79IgvU8QbU0LWeUQrf7Efu9XsvC8TjQPATrRAfO8zrFSvn7agokspQCf_AQfZ7pgjlPSvrqU_lXQFDWPNRHCaausa6yrP_W4TT_8h3sRVRO5OARM0n5UdgqIUbwzmzfvWSJ4_rQ6ISH_-wGEoNirZymLWpvcjk7o6iayEP87S6-k2PLVv5Ef-5plz0dc8JeucjiY3ODFv6_NNZn9C5CT7yW4r9rsqsgoKFroWnTVJ3Arav0FZXbHV1FjMOvHZ2voDA1bVWlJpwgx0QIcS_ZL8p4yhiTceoDswbw41L9R_GXE0T1GkTWf44",
 			"type": "string"
 		}
 	]
