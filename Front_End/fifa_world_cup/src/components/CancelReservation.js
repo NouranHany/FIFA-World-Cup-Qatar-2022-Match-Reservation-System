@@ -1,39 +1,46 @@
 import React, { useEffect , useContext , useState} from 'react'
 import {User} from '../App'
-import styles from './PromoteUsersStyles.module.css'
-function PromoteUsers() {
+import styles from './CancelReservationStyles.module.css'
+
+function CancelReservation() {
     const UserContext = useContext(User);
-    const [waittingUsers, setWaittingUsers] = useState([]);
+    const [Reservations, setReservations] = useState([]);
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_HOST}/unapproved_users`, {
+        fetch(`${process.env.REACT_APP_HOST}/reservation`, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + UserContext.token[0],
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                "Accept": "application/json",
             },
         })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                setWaittingUsers(data.unapproved_users);
+                setReservations(data.reservations);
             })
             .catch((err) => {
                 console.log(err);
             });
     }, []);
-    const handlePromoteUser = (e) => {
+    const handleCancelReservation = (e) => {
         e.preventDefault();
-        let username = e.target.id;
+        let reservationId = e.target.id;
         let status = 0;
-        console.log(username);
-        fetch(`${process.env.REACT_APP_HOST}/user/approve/${username}`, {
-            method: "POST",
+        console.log(reservationId);
+        let index = e.target.parentNode.id;
+        let to_cancel = Reservations[index];
+        fetch(`${process.env.REACT_APP_HOST}/reservation`, {
+            method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + UserContext.token[0],
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                "Accept": "application/json",
             },
+            body: JSON.stringify({
+                "matche_id": to_cancel.matche.id,
+                "seat_number": to_cancel.seat_number,
+            }),
         }
         )
             .then((res) =>{
@@ -46,10 +53,10 @@ function PromoteUsers() {
                     
                     let index = e.target.parentNode.id;
                     console.log('index :>> ', index);
-                    let newWaittingUsers = [...waittingUsers];
-                    newWaittingUsers.splice(index, 1);
-                    setWaittingUsers(newWaittingUsers);
-                    alert("User Approved");
+                    let newReservations = [...Reservations];
+                    newReservations.splice(index, 1);
+                    setReservations(newReservations);
+                    alert("Reservation Canceled");
                 }
                 else {
                     alert(data.message);
@@ -63,51 +70,34 @@ function PromoteUsers() {
 
 
     }
-    const handleApprovAlleUser = (e) => {
-        e.preventDefault();
-        
-    }
-
   return (
     <div className="container py-5 h-100">
         <div className="row justify-content-center align-items-center h-100">
           <div className="col-12 col-lg-9 col-xl-7">
             <div className="card shadow-2-strong card-registration">
               <div className="card-body p-4 p-md-5">
-                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Approve Users</h3>
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Cancel reservation</h3>
                 {
 
-                    waittingUsers?.map((user , index)=>{
+Reservations?.map((reservation , index)=>{
                         return(
                             <div className={styles.form_row}  id={index} key={index} >
-                                <p>{user.first_name}</p>
-                                <p>{user.email_address}</p>
-                                <button id ={user.username} className={styles.form_button} onClick={handlePromoteUser}>Approve</button>
+                                <p>{reservation.matche.team1_name}</p>
+                                <p>{reservation.matche.team2_name}</p>
+                                <button id ={`${reservation.seat_number}${reservation.matche.id}`} className={styles.form_button} onClick={handleCancelReservation}>Cancel</button>
                                 
                             </div>
                         )
                     }
                     )
                 }
-                <div className="mt-4 pt-2">
-                    <input
-                      onClick={handleApprovAlleUser}
-                      style={{
-                        backgroundColor: "rgb(138, 21, 56)",
-                        border: "0px",
-                      }}
-                      className="btn btn-primary btn-lg"
-                      type="submit"
-                      value="Approve All"
-                    />
-                  </div>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
   )
-
 }
 
-export default PromoteUsers
+export default CancelReservation

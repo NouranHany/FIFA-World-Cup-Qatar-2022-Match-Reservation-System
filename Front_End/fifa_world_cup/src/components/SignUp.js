@@ -26,6 +26,7 @@ function SignUp() {
     // get role and gender from radio buttons
     let role = document.querySelector('input[name="role"]:checked').value;
     let gender = document.querySelector('input[name="gender"]:checked').value;
+    let nationality = document.querySelector("nationality").value;
     console.log(JSON.stringify({
       email_address: email_address,
       password: password,
@@ -34,6 +35,7 @@ function SignUp() {
       first_name: first_name,
       last_name: last_name,
       birth_date: birth_date,
+      nationality:nationality
     }));
 
     if (
@@ -245,6 +247,22 @@ function SignUp() {
                         </label>
                       </div>
                     </div>
+                  </div>
+                  
+                  <div className="row">
+                    <div className="col-md-6 mb-4">
+                      <div className="form-outline">
+                        <input
+                          type="text"
+                          id="nationality"
+                          className="form-control form-control-lg"
+                        />
+                        <label className="form-label" for="nationality">
+                          Nationality
+                        </label>
+                      </div>
+                    </div>
+                    
                   </div>
 
                   <div className="mt-4 pt-2">
