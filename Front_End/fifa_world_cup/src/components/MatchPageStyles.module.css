@@ -1,9 +1,14 @@
 .page_container{
-    margin-top: 150px;
+    padding-top: 150px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     font-family: "Poppins", sans-serif;
+}
+.page_outer_container{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(238,238,228);
 }
 .match_data_container{
     display: flex;
@@ -11,8 +16,8 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background: linear-gradient(to bottom,rgb(238, 238, 238),#bdbdbd);
-    box-shadow: 0 1rem 0.5rem rgba(0, 0, 0, 0.25);
+    background: white;
+    border-radius: 10px;
     height: 400px;
 }
 .country_container{
@@ -65,5 +70,5 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 100px;
+    padding-bottom: 100px;
 }

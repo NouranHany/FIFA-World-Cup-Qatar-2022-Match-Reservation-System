@@ -3,11 +3,11 @@ import styles from './HomePageStyles.module.css'
 import NavBar from './NavBar'
 function HomePage() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container } style={{height:"40vh"}}>
     <NavBar/>
 
-    <div>
-    <div className="carosuelContainer">
+    <div style={{height:"40vh"}}>
+    <div className="carosuelContainer" >
   <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
     <ol className="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

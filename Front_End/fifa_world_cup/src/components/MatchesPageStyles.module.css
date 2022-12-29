@@ -2,18 +2,26 @@
 
     margin-top: 30px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-right: 100px;
-    margin-left: 100px;
+    width: 70%;
+    margin: auto;
+    margin-top: 60px;
 }
 .matches_title{
-    color: #550065;
+    color: rgb(138, 21, 56);
     font-size: 50px;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    margin-top: 120px;
+    padding-top: 120px;
     margin-bottom: 0px;
+}
+
+.page_container{
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color: rgb(238,238,228);
 }
