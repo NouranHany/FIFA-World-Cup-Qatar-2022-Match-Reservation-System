@@ -35,6 +35,7 @@ Route::get('stadium', [StadiumController::class, 'index'])->middleware('auth:api
 
 ############################## Team Routes ################### 
 Route::get('team', [TeamController::class, 'index'])->middleware('auth:api');
+Route::put('team', [TeamController::class, 'update_teams']);
 
 ############################## Match Routes ################### 
 Route::post('match', [MatcheController::class, 'store'])->middleware('auth:api');

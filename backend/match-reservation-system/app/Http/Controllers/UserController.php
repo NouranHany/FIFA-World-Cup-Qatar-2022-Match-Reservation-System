@@ -187,10 +187,8 @@ class UserController extends Controller
         ], Response::HTTP_OK);
     }
 
-
     public function index(Request $request)
     {
-        
         $user = auth()->guard('api')->user();
         // only managers are allowed to update  a match
         if ($user->role != 2) {
@@ -204,7 +202,6 @@ class UserController extends Controller
         return response([
             "users"=>$users
             ], Response::HTTP_OK);
-
     }
     
 }
