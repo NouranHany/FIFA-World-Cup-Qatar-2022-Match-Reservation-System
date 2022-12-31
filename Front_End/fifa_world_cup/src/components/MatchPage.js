@@ -191,7 +191,7 @@ function MatchPage() {
           newMatch.stadium.shape = newRows;
           
           setMatch(newMatch);
-          alert("Reservation done successfully");
+          alert(`Reservation done successfully with Ticket Number ${this_match}-${clickedDivId}`);
           setReservationForm(false);
         }
         else {

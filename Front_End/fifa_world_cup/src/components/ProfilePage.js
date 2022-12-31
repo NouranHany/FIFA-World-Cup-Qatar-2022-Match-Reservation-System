@@ -152,11 +152,11 @@ function ProfilePage() {
                   </div>
                   <div className={styles.function_row}>
                     <FontAwesomeIcon
-                      icon={faPlus}
+                      icon={faTrash}
                       style={{ marginRight: "5px" }}
                     />
                     <h5 onClick={flipViewAndCancelResercation}>
-                      Cancel reservation
+                      View and cancel reservations
                     </h5>
                   </div>
                 </>

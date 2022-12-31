@@ -1,3 +1,4 @@
 .container{
-    background: linear-gradient(to top left, #f7f7f7ed, #ffffffb4);
+    /* background: linear-gradient(to top left, #f7f7f7ed, #ffffffb4); */
+    padding-top: 80px;
 }

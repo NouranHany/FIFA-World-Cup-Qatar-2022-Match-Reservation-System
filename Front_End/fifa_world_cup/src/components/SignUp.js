@@ -26,7 +26,7 @@ function SignUp() {
     // get role and gender from radio buttons
     let role = document.querySelector('input[name="role"]:checked').value;
     let gender = document.querySelector('input[name="gender"]:checked').value;
-    let nationality = document.querySelector("nationality").value;
+    let nationality = document.getElementById("nationality").value;
     console.log(JSON.stringify({
       email_address: email_address,
       password: password,
@@ -67,6 +67,7 @@ function SignUp() {
           first_name: first_name,
           last_name: last_name,
           birth_date: birth_date,
+          nationality: nationality
         }),
       })
         .then((res) =>{

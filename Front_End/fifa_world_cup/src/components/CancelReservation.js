@@ -76,14 +76,15 @@ function CancelReservation() {
           <div className="col-12 col-lg-9 col-xl-7">
             <div className="card shadow-2-strong card-registration">
               <div className="card-body p-4 p-md-5">
-                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Cancel reservation</h3>
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">View and cancel reservation</h3>
                 {
 
 Reservations?.map((reservation , index)=>{
                         return(
                             <div className={styles.form_row}  id={index} key={index} >
-                                <p>{reservation.matche.team1_name}</p>
-                                <p>{reservation.matche.team2_name}</p>
+                                <p style={{marginTop:"8px"}}>{reservation.matche.id}-{reservation.seat_number}</p>
+                                <p style={{marginTop:"8px"}}>{reservation.matche.team1_name}</p>
+                                <p style={{marginTop:"8px"}}>{reservation.matche.team2_name}</p>
                                 <button id ={`${reservation.seat_number}${reservation.matche.id}`} className={styles.form_button} onClick={handleCancelReservation}>Cancel</button>
                                 
                             </div>

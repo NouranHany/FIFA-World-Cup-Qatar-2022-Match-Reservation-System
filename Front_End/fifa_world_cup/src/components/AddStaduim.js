@@ -58,7 +58,7 @@ function AddStaduim() {
           <div className="col-12 col-lg-9 col-xl-7">
             <div className="card shadow-2-strong card-registration">
               <div className="card-body p-4 p-md-5">
-                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Add staduim</h3>
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5">Add stadium</h3>
                 <form>
 
 

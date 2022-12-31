@@ -65,7 +65,36 @@ function PromoteUsers() {
     }
     const handleApprovAlleUser = (e) => {
         e.preventDefault();
-        
+        let status = 0;
+        fetch(`${process.env.REACT_APP_HOST}/user/approve`, {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + UserContext.token[0],
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+        })
+            .then((res) => {
+                status = res.status;
+                return res.json();
+            }
+            )
+            .then((data) => {
+                if (status === 200) {
+                    alert("All Users Approved");
+                    setWaittingUsers([]);
+                }
+                else {
+                    alert(data.message);
+                }
+            }
+            )
+            .catch((err) => {
+                console.log(err);
+            }
+            );
+
+
     }
 
   return (
@@ -80,8 +109,8 @@ function PromoteUsers() {
                     waittingUsers?.map((user , index)=>{
                         return(
                             <div className={styles.form_row}  id={index} key={index} >
-                                <p>{user.first_name}</p>
-                                <p>{user.email_address}</p>
+                                <p style={{marginTop:"8px"}}>{user.first_name}</p>
+                                <p style={{marginTop:"8px"}}>{user.email_address}</p>
                                 <button id ={user.username} className={styles.form_button} onClick={handlePromoteUser}>Approve</button>
                                 
                             </div>

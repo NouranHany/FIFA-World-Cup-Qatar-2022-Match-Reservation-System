@@ -3,9 +3,9 @@ import styles from './HomePageStyles.module.css'
 import NavBar from './NavBar'
 function HomePage() {
   return (
-    <div className={styles.container } style={{height:"40vh"}}>
+    <>
     <NavBar/>
-
+    <div className={styles.container }>
     <div style={{height:"40vh"}}>
     <div className="carosuelContainer" >
   <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -16,10 +16,10 @@ function HomePage() {
     </ol>
     <div className="carousel-inner">
       <div className="carousel-item active">
-        <img className="d-block w-100" src="https://digitalhub.fifa.com/transform/d93104bb-f6f3-45df-b98e-9760a5a89baa/Argentina-v-France-Final-FIFA-World-Cup-Qatar-2022?io=transform:fill,aspectratio:16x9,width:1024&quality=100" alt="First slide"></img>
+        <img className="d-block w-100" src="https://phantom-marca.unidadeditorial.es/7d4da3fa191ef94a73b01e7bb2370c71/resize/1200/f/jpg/assets/multimedia/imagenes/2022/06/14/16552420342319.jpg" alt="First slide"></img>
       </div>
       <div className="carousel-item">
-        <img className="d-block w-100" src="https://digitalhub.fifa.com/transform/96415e3a-8a76-4e4e-b454-9f9bf7220fc2/1445558592?io=transform:fill,aspectratio:16x9,width:844&quality=100" alt="Second slide"></img>
+        <img className="d-block w-100" src="https://assets.khelnow.com/news/uploads/2022/11/FIFA-World-Cup-2022.jpg" alt="Second slide"></img>
       </div>
       <div className="carousel-item">
         <img className="d-block w-100" src="https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt9abe8ee140998f70/63a2328bd59af063b704ff7c/Richarlison.jpg?quality=80&format=pjpg&auto=webp&width=1000" alt="Third slide"></img>
@@ -42,6 +42,7 @@ function HomePage() {
     </div>
 
     </div>
+    </>
   )
 }
 
