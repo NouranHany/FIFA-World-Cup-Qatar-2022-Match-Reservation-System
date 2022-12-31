@@ -50,6 +50,7 @@ Route::delete('user/{username}', [UserController::class, 'delete'])->middleware(
 Route::post('user/approve/{username}', [UserController::class, 'approve'])->middleware('auth:api');
 Route::post('user/approve', [UserController::class, 'approve_all'])->middleware('auth:api');
 Route::get('unapproved_users', [UserController::class, 'unapproved_users'])->middleware('auth:api');
+Route::get('user', [UserController::class, 'index'])->middleware('auth:api');
 
 ############################## Reservation Routes ####################
 Route::post('/reservation', [ReservationController::class, 'store'])->middleware('auth:api');

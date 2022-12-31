@@ -186,5 +186,25 @@ class UserController extends Controller
             "user" => $user_loggedin
         ], Response::HTTP_OK);
     }
+
+
+    public function index(Request $request)
+    {
+        
+        $user = auth()->guard('api')->user();
+        // only managers are allowed to update  a match
+        if ($user->role != 2) {
+            return response([
+                'message' => 'only system admins are allowed to upadte a match'
+            ], Response::HTTP_FORBIDDEN);
+        }
+        
+        $users = User::orderBy('first_name','asc')->get();
+
+        return response([
+            "users"=>$users
+            ], Response::HTTP_OK);
+
+    }
     
 }
