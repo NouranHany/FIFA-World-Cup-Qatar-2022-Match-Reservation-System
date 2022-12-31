@@ -8,7 +8,10 @@ function MatchCard(props) {
   const [country2_flag, setCountry2Flag] = useState("");  
   const getJSON = function (url, errMsg = "something went wrong") {
     return fetch(url).then((res) => {
-      if (!res.ok) throw new Error(`${errMsg} (${res.status})`);
+      if (!res.ok) {
+
+        throw new Error(`${errMsg} (${res.status})`);
+      }
       return res.json();
     });
   };
@@ -22,8 +25,22 @@ function MatchCard(props) {
     }
   };
   useEffect(() => {
-    getFlag(props.data.team1_name).then((data) => setCountry1Flag(data));
-    getFlag(props.data.team2_name).then((data) => setCountry2Flag(data));
+    // getFlag(props.data.team1_name).then((data) => setCountry1Flag(data));
+    // getFlag(props.data.team2_name).then((data) => setCountry2Flag(data));
+    fetch(`https://countryflagsapi.com/png/${props.data.team1_name}`).then((res) => { 
+      // convert the image result to url
+      res.blob().then((blob) => {
+        let url = URL.createObjectURL(blob);
+        setCountry1Flag(url);
+      });
+    });
+    fetch(`https://countryflagsapi.com/png/${props.data.team2_name}`).then((res) => {
+      // convert the image result to url
+      res.blob().then((blob) => {
+        let url = URL.createObjectURL(blob);
+        setCountry2Flag(url);
+      });
+    });
   }, []);
 
 

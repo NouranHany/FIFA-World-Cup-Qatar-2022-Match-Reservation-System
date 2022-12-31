@@ -52,8 +52,25 @@ function MatchPage() {
         console.log(data.match.stadium.shape)
         console.log(" hh " , match);
         setRows(data.match.stadium.shape);
-        getFlag(data.match.team1_name).then((data) => setCountry1Flag(data));
-        getFlag(data.match.team2_name).then((data) => setCountry2Flag(data));
+        // getFlag(data.match.team1_name).then((data) => setCountry1Flag(data));
+        // getFlag(data.match.team2_name).then((data) => setCountry2Flag(data));
+
+
+
+        fetch(`https://countryflagsapi.com/png/${data.match.team1_name}`).then((res) => { 
+      // convert the image result to url
+      res.blob().then((blob) => {
+        let url = URL.createObjectURL(blob);
+        setCountry1Flag(url);
+      });
+    });
+    fetch(`https://countryflagsapi.com/png/${data.match.team2_name}`).then((res) => {
+      // convert the image result to url
+      res.blob().then((blob) => {
+        let url = URL.createObjectURL(blob);
+        setCountry2Flag(url);
+      });
+    });
         }
         else {
           alert(data.message);
