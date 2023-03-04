@@ -1,0 +1,57 @@
+/* .card_container:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+} */
+
+.cardRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+    color: white;
+}
+.card{
+    width: 100%;
+    background-color: white;
+    margin-bottom: 60px;
+    border: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    justify-content: space-around;
+    margin: 20px;
+    font-family: "poppins", sans-serif;
+    color: black;
+}
+.card:hover{
+    border: 1px solid rgb(138, 21, 56);
+    transition: 0.2s;
+}
+.country_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+}
+.flag_container{
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.data_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.country2_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+}

@@ -1,0 +1,45 @@
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+ }
+ .navContainer{
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(138, 21, 56);
+    height: 80px;
+    color: white;
+    font-family: poppins;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    padding-left: 70px;
+      padding-right: 70px;
+ }
+ 
+ .listItem{
+    list-style-type: none;
+    margin-left: 30px;
+    color: white;
+    margin-top: 10px;
+ }
+ .listItem:hover{
+   transform: scale(1.1);
+    transition: 0.4s;
+ }
+ .logo{
+    height: 60px;
+ }
+ .links li a{
+    text-decoration: none;
+    color: white;
+ }

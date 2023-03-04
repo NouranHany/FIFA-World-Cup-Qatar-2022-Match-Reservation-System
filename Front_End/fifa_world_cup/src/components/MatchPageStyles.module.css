@@ -1,0 +1,93 @@
+.page_container{
+    padding-top: 150px;
+    width: 70%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Poppins", sans-serif;
+}
+.page_outer_container{
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color: rgb(238,238,228);
+}
+.match_data_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    height: 300px;
+}
+.country_container{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    align-items: center;
+}
+.country_container img{
+    width: 150px;
+    margin-bottom: 20px;
+}
+.match_data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.data_row_container{
+    display: flex;
+    flex-direction: row;
+}
+.seat{
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    margin: 15px;
+}
+
+
+.stadium_shape{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.reservation_container{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 100px;
+    background-color: white;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+}
+.data_row_container_edit{
+    display: flex;
+    flex-direction: row;
+}
+
+.data_row_container_edit :hover{
+    border: 1px solid rgb(138, 21, 56);
+    border-radius: 5px;
+    padding: 5px;
+}
