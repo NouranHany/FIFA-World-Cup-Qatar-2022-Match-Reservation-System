@@ -34,7 +34,7 @@ function App() {
     </Router> 
     </User.Provider>
     </>
+
   );
 }
-
 export default App;
