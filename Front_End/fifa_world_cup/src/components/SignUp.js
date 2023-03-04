@@ -7,16 +7,6 @@ function SignUp() {
   const navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
-    /*
-     "email_address":"hany.noran18@gmail.com",
-    "password":"test123",
-    "gender":1,
-    "role":1,
-    "first_name":"Noran",
-    "last_name":"Hany",
-    "birth_date":"2000-10-27"
-    */
-    console.log("sign up");
     let email_address = document.getElementById("email_address").value;
     let password = document.getElementById("password").value;
     let confirm_password = document.getElementById("confirm_password").value;
