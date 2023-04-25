@@ -7,6 +7,9 @@ The website consists of 3 users:
 2. Manager
 3. System Administrator
 
+## System Schema
+![image](https://user-images.githubusercontent.com/59095993/234141142-3147e57d-858d-4ebf-8f41-0c608933be05.png)
+
 ## :movie_camera: Demo
 ### System Administrator Functionalities
 https://user-images.githubusercontent.com/59095993/212043841-e946e354-2b05-45df-b91d-07e96d6ebab9.mp4
